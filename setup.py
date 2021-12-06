@@ -6,7 +6,7 @@ with open("README.rst", 'r') as f:
 
 setup(
     name='IrregConv',
-    version='0.7',
+    version='0.8',
     license='MIT',
     author="Bradford Gill",
     description='easy to use Irregularly shaped convolution kernels',
@@ -15,7 +15,7 @@ setup(
     author_email='bradfordgill@umass.edu',
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    url='',
+    url='https://github.com/electricdarb/IregularConv',
     keywords='IrregConv irregular convolution brain damage',
     install_requires=[
           'numpy',
