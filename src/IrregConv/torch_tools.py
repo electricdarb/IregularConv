@@ -1,3 +1,6 @@
+"""
+PyTorch Implementation of IrregConv, by Robin Deuher
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -47,11 +50,13 @@ def rand_mask(num_filters, num_channels, kernel_dims = (3, 3), weights_per_kerne
     return torch.Tensor(mask)
 
 class IrregConv2D(nn.Conv2d):
+    """"""
     def __init__(self, in_channels, out_channels, kernel_size, mask_fn = rand_mask, weights_per_kernel = None, **kwargs):
         super(IrregConv2D, self).__init__(in_channels, out_channels, kernel_size, **kwargs)
         self.mask = mask_fn(out_channels, in_channels, kernel_dims = kernel_size, weights_per_kernel = weights_per_kernel)
+        # get initalized weights from 
         weights = self.weight
-        self.weight = nn.Parameter(weights*self.mask)
+        self.weight = nn.Parameter(weights * self.mask)
 
     def forward(self, input: Tensor) -> Tensor:
         weight = torch.mul(self.weight, self.mask)
